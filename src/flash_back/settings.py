@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'categories.apps.CategoriesConfig'
 ]
 
 MIDDLEWARE = [
@@ -77,11 +80,11 @@ WSGI_APPLICATION = 'flash_back.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DB_NAME', 'nome_do_banco'),
-        'USER': os.environ.get('DB_USER', 'nome_do_user'),
-        'PASSWORD': os.environ.get('DB_PASS', 'senha_do_user'),
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER', ''),
+        'PASSWORD': config('DB_PASS', ''),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', default=5432, cast=int),
     }
 }
 

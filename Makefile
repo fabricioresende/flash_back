@@ -19,12 +19,11 @@ conf-env:
 requirements-pip:
 	@pip install --upgrade pip
 	@pip install -r requirements/development.txt
-	@pip install -r requirements/production.txt
 
 
 # Install
 
-install: clean conf-env requirements-pip migrate createsuperuser
+install: clean conf-env requirements-pip migrate #createsuperuser
 
 
 
