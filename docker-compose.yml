@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  postgres_flash:
+    container_name: postgres_flash
+    image: postgres:9.6-alpine
+    environment:
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_USER: admin
+      POSTGRES_DB: flash_delivery
+    stdin_open: true
+    volumes:
+      - /var/lib/postgresql
+    tty: true
+    ports:
+      - 5432:5432/tcp
